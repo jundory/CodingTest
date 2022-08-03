@@ -1,5 +1,0 @@
-function solution() {
-
-  }
-
-  //22
