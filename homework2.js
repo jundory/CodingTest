@@ -26,7 +26,7 @@ function solution(nums) {
     
     console.log (solution(nums));
 
-    // 내가 짠 잘못된 코드
+    // 내가 짠 잘못된 코드.
 //  function prime(sum) {      
 //   if (sum == 1) {      
 //       return false;
