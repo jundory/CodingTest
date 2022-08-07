@@ -7,19 +7,33 @@
 // 2. a와 b는 0이상 100 이하입니다.
 // 3. a와 b는 같을 수 있거나, b가 크도록 대소관계가 정해져있습니다.
 
-function solution(a,b,c) {
+// function solution(a,b,c) {
+
+//     let even = [];
+//     let result = 0;
+
+//     for (i=a; i<=b; i=i+c){   
+      
+//         if(i%2==0) {
+//             even.push(i);
+//         }      
+//             result ++
+//       }
+//       return even.length;
+//     }
+
+//   console.log (solution(4,50,3))
+
+
+  function solution(a,b,c) {
 
     let even = [];
-    let result = 0;
-
     for (i=a; i<=b; i=i+c){   
       
         if(i%2==0) {
-            even.push(i);
-        }      
-            result += i
-      }
-      return even.length;
+            even.push (i);
+        } 
     }
-
+    return even.length;
+  }
   console.log (solution(4,50,3))
