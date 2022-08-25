@@ -63,6 +63,6 @@ function makeAdder(x) {
 }
 
 const add3 = makeAdder(3);
-console.log(add3(2)); //5 -> add3 함수가 선언됐음에도 makeAdder 함수에 접근.
+console.log(add3(2)); //5 -> add3 함수가 선언됐음에도 makeAdder 함수에 접근함.
 
 
