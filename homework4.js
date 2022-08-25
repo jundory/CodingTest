@@ -9,16 +9,35 @@
 
 
 
-  function solution(a,b,c) {
+  // function solution(a,b,c) {
 
-    let even = [];
-    for (i=a; i<=b; i=i+c){   
+  //   let even = [];
+  //   for (i=a; i<=b; i=i+c){   
       
-        if(i%2==0) {
-            even.push (i);
-        } else if (a == b) {
-            return i;
-            }
+  //       if(i%2==0) {
+  //           even.push (i);
+  //       } else if (a == b) {
+  //           return i;
+  //           }
+  //       }
+  //   return even.length;
+  // }
+
+//좀 더 깔끔하게
+  function solution(a,b,c) {
+    let answer = 0;
+    for (i=a; i<=b; i=i+c){   
+        if (i%2 == 0) {
+          answer ++;
         }
-    return even.length;
+        }
+    return answer;
   }
+  console.log("짝수의 갯수는 " + solution(4,50,3) + "개")
+
+
+  //--------필터 메소드--------//
+
+//   let result = arr.filter((a,b,c)=> {
+// for ()
+//   })

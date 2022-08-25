@@ -26,13 +26,13 @@ function solution(nums) {
     
     console.log (solution(nums));
 
-    // 내가 짠 잘못된 코드.
-//  function prime(sum) {      
-//   if (sum == 1) {      
+  // -----------내가 짠 실행안되는 코드-------------- 
+//  function prime(num) {      
+//   if (num == 1) {      
 //       return false;
 //   }
-//   for (i = 2; i <= Math.sqrt(sum); i++) {
-//     if (sum % i == 0){
+//   for (i = 2; i <= Math.sqrt(num); i++) {
+//     if (num % i == 0){
 //       return false;
 //           }
 //       return true;

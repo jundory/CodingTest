@@ -10,7 +10,7 @@
 
 function solution(a,b) {
     if (a > b) {
-        [a,b] = [b,a];
+        [a,b] = [b,a];  //구조분해할당 원리?? 객체구조분해는 {} = [] ex) {name, age} = user;
     }
     let sum = 0;
     for (i=a; i<=b; i++){
