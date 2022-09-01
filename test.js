@@ -1,4 +1,8 @@
-// 1. 평균값 구하기
+
+// 평균값 구하기
+// 낄낄낄낄낄낄낄낄낄ㅛ
+// zzz
+
 
 // function solution(arr) {
 //     var answer = 0
@@ -60,9 +64,9 @@ function makeAdder(x) {
     return function(y){
         return x + y;
     }
+
 }
 
 const add3 = makeAdder(3);
 console.log(add3(2)); //5 -> add3 함수가 선언됐음에도 makeAdder 함수에 접근함.
-
 
