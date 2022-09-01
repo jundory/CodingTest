@@ -1,4 +1,5 @@
 // 평균값 구하기
+// 낄낄낄낄낄낄낄낄낄ㅛ
 
 function solution(arr) {
     var answer = 0
