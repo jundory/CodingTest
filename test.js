@@ -3,6 +3,7 @@
 // 낄낄낄낄낄낄낄낄낄ㅛ
 // fetch 성공?
 // ㅇㅇ 성공했다
+// ㄹㅇ루다가
 
 
 // function solution(arr) {
