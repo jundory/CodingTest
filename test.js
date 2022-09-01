@@ -2,6 +2,7 @@
 // 평균값 구하기
 // 낄낄낄낄낄낄낄낄낄ㅛ
 // fetch 성공?
+// ㅇㅇ 성공했다
 
 
 // function solution(arr) {
