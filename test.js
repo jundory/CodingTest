@@ -4,6 +4,7 @@
 // fetch 성공?
 // ㅇㅇ 성공했다
 // ㄹㅇ루다가
+//ㅋㅋ
 
 
 // function solution(arr) {
