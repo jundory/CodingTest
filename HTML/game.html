@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/game.css">  
+</head>
+<body>
+    <form id="login-form" class="hidden">
+        <input
+        required
+        maxlength="15"
+        type="text"
+        placeholder="이름을 입력하세요."
+        />
+        <input type="submit" value="게임시작"/>
+    </form>
+    <div class="hidden">
+        <button>적군 랜덤선택</button>
+    </div>
+
+    <br>
+
+    <list id="ovr"> </list>
+    <h1 class="hidden">     
+    </h1>
+
+    <h2 class="hidden">
+    <button id ="attack"> 1. 공격한다 </button> 
+    <button id ="defence"> 2. 방어한다 </button>
+    <button id="run"> 3. 도망간다 </button>
+    </h2>
+
+</body>
+<script src="../JS/login.js"></script>
+<script src="../JS/game.js"></script>
+
+
+</html>
