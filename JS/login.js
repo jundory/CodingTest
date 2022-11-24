@@ -38,11 +38,10 @@ class Character {
     }
 }
 
-const user = new Character(Myname, 100, 10);
+const user = new Character(Myname, 90, 15);
 const wizard = new Character("wizard", 70, 30);
 const warrior = new Character("warrior", 120, 7);
 const archer = new Character("archer", 100, 10);
-
 const enemy = [wizard, warrior, archer];
 
 //로컬스토리지에 키 값 없을 경우
@@ -51,18 +50,15 @@ function onsubmit(event){
     loginForm.classList.add("hidden");
     localStorage.setItem(USERNAME_KEY, loginInput.value);
     div.classList.remove("hidden");
-    wellcome();
+    wellcome(loginInput.value);
 }
-
 //로컬스토리지에 키 값이 있거나 생성되었을 경우
-function wellcome(){
+function wellcome(value){
     //기존 변수를 사용하면 null. Myname을 읽지 못하는 이유 질문할 것!
-    const Mynamed = localStorage.getItem(USERNAME_KEY);
+    const Mynamed = localStorage.getItem(USERNAME_KEY) ?? value;
     div.classList.remove("hidden");
     alert(`환영합니다 ${Mynamed}님. 화면의 버튼을 눌러 적을 생성하세요.`);
 }
-
-
 //호이스팅 마친 후 여기부터 읽기 시작.
 if(Myname === null){
     loginForm.classList.remove("hidden");
@@ -71,7 +67,6 @@ if(Myname === null){
     div.classList.remove("hidden");
     wellcome();
 }
-
 const att = document.querySelector("#attack");
 const run = document.querySelector("#run");
 
@@ -87,6 +82,7 @@ function create(){
 
     localStorage.setItem("enemy", JSON.stringify(RandomMonster));
 
+    
     list.classList.remove("hidden");
     list.innerText = `콘솔창을 열어 자세한 정보를 확인하세요.
     나의 정보 : ${JSON.stringify(user)}
@@ -100,6 +96,9 @@ function create(){
     
     function startBattle(){
         user.attack(RandomMonster);
+        if(RandomMonster.hp > 0){
+            RandomMonster.attack(user);
+        }
     }
 }
 
@@ -170,3 +169,10 @@ function runner(){
 //     console.log(ArrMons);
 //     console.log(MyHero.attack(ArrMons[0]));
 // }
+
+
+
+//1. localStrage.getItem 에서 null
+//2. 도망친 후 다시 몹 생성하면, 단순히 버튼만 none했다가 block한거라 기존 몹이 남아 있음. -> 재생성한 몹과 싸울 때 1:2함
+//3. 몹이랑 싸우다가 죽거나 아슬아슬할 때 정신승리 나옴. (내가 죽어도 승리메시지 나옴.)
+//4. import export로 스크립트 파일 간 모듈화 안되는 이유
