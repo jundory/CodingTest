@@ -26,6 +26,8 @@ function solution(nums) {
     
     console.log (solution(nums));
 
+
+  
   // -----------내가 짠 실행안되는 코드-------------- 
 //  function prime(num) {      
 //   if (num == 1) {      

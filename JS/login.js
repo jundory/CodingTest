@@ -15,19 +15,22 @@ class Character {
         this.hp = hp,
         this.damage = damage
     }
+
+    // 아래서 올라온 attacked함수의 this는 몬스터. 
     attacked(damage){
         this.hp -= damage;
         console.log(`${this.name}의 체력이 ${this.hp} 남았습니다.`);
+        // this.attack(target);
                     if(this.hp <= 0) {
-            console.log(`${this.name}이 사망하셨습니다. F5를 눌러 다시 시작하세요.`)
-            battle = false;
-            gameover = true;
-        }
+            console.log(`${this.name}이 사망했습니다.`)
+        } // else if(target.hp <= 0) {
+        //     console.log(`${target.name}이 사망하셨습니다. F5를 눌러 다시 시작하세요.`)
+        // }
     }
 //내가 적을 공격합니다. this 나 target 적
     attack(target){
         console.log(`${this.name}이 ${target.name}을 공격합니다.`)
-        //Character를 상속받는 인스턴스인 attacked 함수의 파라미터에 this.att할당.
+        //Character를 상속받는 인스턴스인 attacked 함수의 파라미터에 this.damage할당.
         target.attacked(this.damage);
         if (target.hp <= 0) {
                         console.log(`전투에 승리하셨습니다.`);
@@ -37,7 +40,7 @@ class Character {
 
 const user = new Character(Myname, 100, 10);
 const wizard = new Character("wizard", 70, 30);
-const warrior = new Character("warrior", 200, 7);
+const warrior = new Character("warrior", 120, 7);
 const archer = new Character("archer", 100, 10);
 
 const enemy = [wizard, warrior, archer];
@@ -53,7 +56,7 @@ function onsubmit(event){
 
 //로컬스토리지에 키 값이 있거나 생성되었을 경우
 function wellcome(){
-    //호이스팅된 변수를 사용하면 null. Myname을 읽지 못하는 이유 질문할 것!
+    //기존 변수를 사용하면 null. Myname을 읽지 못하는 이유 질문할 것!
     const Mynamed = localStorage.getItem(USERNAME_KEY);
     div.classList.remove("hidden");
     alert(`환영합니다 ${Mynamed}님. 화면의 버튼을 눌러 적을 생성하세요.`);
@@ -71,83 +74,53 @@ if(Myname === null){
 
 const att = document.querySelector("#attack");
 const run = document.querySelector("#run");
-let gameover = false;
-let battle = false;
 
 function create(){
-    const RandomMonster = enemy[Math.floor(Math.random() * 3)];
+    let RandomMonster = enemy[Math.floor(Math.random() * 3)];
     div.classList.add("hidden");
     h1.classList.remove("hidden");
     h2.classList.remove("hidden");
-
+    
     alert(`전방에 ${RandomMonster.name} 출현!`);
-    console.log(RandomMonster);
     console.log(user);
+    console.log(RandomMonster);
 
     localStorage.setItem("enemy", JSON.stringify(RandomMonster));
 
+    list.classList.remove("hidden");
     list.innerText = `콘솔창을 열어 자세한 정보를 확인하세요.
     나의 정보 : ${JSON.stringify(user)}
     적의 정보 : ${JSON.stringify(RandomMonster)}`
     h1.innerText = "어떻게 하시겠습니까?"
 
-}
-att.addEventListener("click", startBattle);
 
-function startBattle(){
-    user.attack(RandomMonster);
-    console.log("hi");
+    // 공격을 눌렀을 시 아래의 함수 실행
+    att.addEventListener("click", startBattle);
+    
+    
+    function startBattle(){
+        user.attack(RandomMonster);
+    }
 }
 
 //적 생성버튼을 누르면 발생하는 이벤트
 div.addEventListener("click", create);
 
-//빈 배열을 만들고 상대를 넣으니 상속을 받지 못해 실패.
-// const ArrMons =[];
-// function startBattle(){
-//     const MyHero = new Character(Myname, 100, 10);
-//     const Monster = localStorage.getItem("enemy");
+run.addEventListener("click", runner);
 
-//     if(Monster !== null){
-//         const Mons = JSON.parse(Monster);
-//         ArrMons.push(Mons);
-//     }
-//     console.log(MyHero);
-//     console.log(ArrMons);
-//     console.log(MyHero.attack(ArrMons[0]));
-// }
-
-
-
+function runner(){
+    // 여기도 마찬가지로 변수를 읽지 못함. <-- 왜?
+    const getMyName = localStorage.getItem(USERNAME_KEY);
+    alert(`${getMyName}님이 신속하게 몸을 숨겼습니다.`);
+    list.classList.add("hidden");
+    h1.classList.add("hidden");
+    h2.classList.add("hidden");
+    
+    div.classList.remove("hidden"); 
+}
 
 //----------------------------------------------------------------------------------------
 
-
-// class Character {
-//     constructor(name, hp, damage){
-//         this.name = name,
-//         this.hp = hp,
-//         this.damage = damage
-//     }
-//     attacked(damage){
-//         this.hp -= damage;
-//         console.log(`${this.name}의 체력이 ${this.hp} 남았습니다.`);
-//                     if(this.hp <= 0) {
-//             console.log(`${this.name}이 사망하셨습니다. F5를 눌러 다시 시작하세요.`)
-//             battle = false;
-//             gameover = true;
-//         }
-//     }
-// //내가 적을 공격합니다. this 나 target 적
-//     attack(target){
-//         console.log(`${this.name}이 ${target.name}을 공격합니다.`)
-//         //Character를 상속받는 인스턴스인 attacked 함수의 파라미터에 this.att할당.
-//         target.attacked(this.damage);
-//         if (target.hp <= 0) {
-//                         console.log(`전투에 승리하셨습니다.`);
-//                       }
-//     }
-// }
 
 // class Hero extends Character {
 //     //오버라이딩(super.메소드) = 부모클래스(Character)의 메소드(attacked)를 사용 및 확장함.
@@ -168,18 +141,9 @@ div.addEventListener("click", create);
 //     }
 // }
 
-// const user = new Character(Myname, 100, 10);
-// const wizard = new Character("wizard", 70, 30);
-// const warrior = new Character("warrior", 200, 7);
-// const archer = new Character("archer", 100, 10);
+//-----------------------------------실패한 코드들-------------------------------------------
 
-// const enemy = [wizard, warrior, archer];
-
-
-
-//----------------------------------------------------------------------------------------
-// const Hero = new Hero
-
+// 반복문 돌리려 한 자동 전투 함수
 // function fight(){
 //     const MyHero = new Hero();
 //     console.log(``)
@@ -191,8 +155,18 @@ div.addEventListener("click", create);
 //     // }
 // }
 
-//  att.addEventListener("click", fight);
-// // def.addEventListener("click", defence)
-// // run.addEventListener("click", runner)
 
+//빈 배열을 만들고 상대를 넣으니 상속을 받지 못해 실패.
+// const ArrMons =[];
+// function startBattle(){
+//     const MyHero = new Character(Myname, 100, 10);
+//     const Monster = localStorage.getItem("enemy");
 
+//     if(Monster !== null){
+//         const Mons = JSON.parse(Monster);
+//         ArrMons.push(Mons);
+//     }
+//     console.log(MyHero);
+//     console.log(ArrMons);
+//     console.log(MyHero.attack(ArrMons[0]));
+// }
